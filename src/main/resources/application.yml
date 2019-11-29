@@ -1,0 +1,21 @@
+# overrides
+
+server:
+  servlet:
+    context-path: /api/v1
+
+# management
+management:
+  metrics:
+    enabled.jvm: true
+    enabled.root: true
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    shutdown.enabled: true
+    info.enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
