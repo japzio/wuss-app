@@ -28,6 +28,10 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -42,6 +46,12 @@
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<!-- for Spring Data Redis v.2.2.x -->
+			<artifactId>redisson-spring-data-22</artifactId>
+			<version>3.17.6</version>
 		</dependency>
 
 		<dependency>
@@ -93,5 +103,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

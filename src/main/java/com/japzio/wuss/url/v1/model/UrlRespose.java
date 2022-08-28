@@ -8,7 +8,6 @@ import lombok.Data;
 public class UrlRespose {
 
     private String id;
-    private String url;
-    private String fullUrl;
+    private String origUrl;
 
 }
