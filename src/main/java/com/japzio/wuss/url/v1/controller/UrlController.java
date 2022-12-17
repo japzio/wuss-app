@@ -53,7 +53,5 @@ public class UrlController {
                 id,
                 urlRequest.getUrl()
         );
-
     }
-
 }
