@@ -16,43 +16,7 @@ import org.testcontainers.utility.DockerImageName;
 import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
-@Testcontainers
 class WussApplicationTests {
-
-	UrlCacheService urlCacheService;
-
-	public WussApplicationTests(@Autowired UrlCacheService urlCacheService) {
-		this.urlCacheService = urlCacheService;
-	}
-	@Container
-	private static GenericContainer<?> redis =
-			new GenericContainer<>(DockerImageName.parse("redis:7.0.7"))
-					.withExposedPorts(6379);
-	@DynamicPropertySource
-	static void redisProperties(DynamicPropertyRegistry registry) {
-		registry.add("spring.redis.host", redis::getHost);
-		registry.add("spring.redis.port", redis::getFirstMappedPort);
-	}
-
-	@BeforeClass
-	public static void setup(){
-		redis.start();
-	}
-
-
-	@Test
-	void givenUrlCreated_thenProductExistsAndHasSameProperties() {
-		UrlDto url = UrlDto.builder()
-				.withId("adfasdfsdf")
-				.withOrigUrl("https://www.github.com/japzio")
-				.withTtl(60)
-				.build();
-		urlCacheService.addUrl(url);
-		UrlDto urlFromCache = urlCacheService.getUrl("adfasdfsdf");
-		assertEquals(url.getId(), urlFromCache.getId());
-		assertEquals(url.getOrigUrl(), urlFromCache.getOrigUrl());
-		assertEquals(url.getTtl(), urlFromCache.getTtl());
-	}
 
 	@Test
 	void contextLoads() {
