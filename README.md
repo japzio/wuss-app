@@ -5,7 +5,7 @@ Web URL Shortening Service
 ## Requirements
 
 - Java 8
-- Redis (can use docker `docker run -p 6379:6379 redis:7`)
+- Redis (can use docker `docker run -p 6379:6379 redis:7.0.7`)
 
 ## Acknowledgements
 

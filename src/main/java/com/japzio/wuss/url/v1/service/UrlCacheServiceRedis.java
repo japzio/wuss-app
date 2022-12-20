@@ -16,5 +16,8 @@ public class UrlCacheServiceRedis implements UrlCacheService{
         this.urlCacheRepository.save(urlDto);
     }
 
-
+    @Override
+    public UrlDto getUrl(String id) {
+        return this.urlCacheRepository.findById(id).get();
+    }
 }
