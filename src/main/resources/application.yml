@@ -1,8 +1,18 @@
 # overrides
 
+spring:
+  redis:
+    host: localhost
+    port: 6379
+
 server:
   servlet:
     context-path: /api
+
+# /api-docs endpoint custom path
+springdoc:
+  api-docs:
+    path: /api-docs
 
 # management
 management:

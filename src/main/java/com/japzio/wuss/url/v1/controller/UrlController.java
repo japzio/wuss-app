@@ -43,9 +43,9 @@ public class UrlController {
 
         urlCacheService.addUrl(
                     UrlDto.builder()
-                        .id(id)
-                        .origUrl(urlRequest.getUrl())
-                        .ttl(3600)
+                        .withId(id)
+                        .withOrigUrl(urlRequest.getUrl())
+                        .withTtl(3600)
                         .build()
         );
 
@@ -53,7 +53,5 @@ public class UrlController {
                 id,
                 urlRequest.getUrl()
         );
-
     }
-
 }

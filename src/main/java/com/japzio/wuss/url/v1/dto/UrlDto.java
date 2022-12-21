@@ -6,7 +6,7 @@ import org.springframework.data.redis.core.RedisHash;
 
 @RedisHash("shortUrl")
 @Data
-@Builder
+@Builder(setterPrefix = "with")
 public class UrlDto {
 
     private String id;
