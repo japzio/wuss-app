@@ -1,6 +1,6 @@
 package com.japzio.wuss;
 
-import com.japzio.wuss.url.v1.dto.UrlDto;
+import com.japzio.wuss.url.v1.domain.Url;
 import com.japzio.wuss.url.v1.service.UrlCacheService;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.wait.strategy.WaitStrategy;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
@@ -44,13 +43,13 @@ public class UrlCacheIntegrationTests {
 
     @Test
     void givenUrlCreated_thenProductExistsAndHasSameProperties() {
-        UrlDto url = UrlDto.builder()
+        Url url = Url.builder()
                 .withId("adfasdfsdf")
                 .withOrigUrl("https://www.github.com/japzio")
                 .withTtl(60)
                 .build();
         urlCacheService.addUrl(url);
-        UrlDto urlFromCache = urlCacheService.getUrl("adfasdfsdf");
+        Url urlFromCache = urlCacheService.getUrl("adfasdfsdf");
         assertEquals(url.getId(), urlFromCache.getId());
         assertEquals(url.getOrigUrl(), urlFromCache.getOrigUrl());
         assertEquals(url.getTtl(), urlFromCache.getTtl());

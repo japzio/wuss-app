@@ -1,19 +1,18 @@
 package com.japzio.wuss.url.v1.controller;
 
 import com.japzio.wuss.exception.EmptyFieldException;
-import com.japzio.wuss.url.v1.dto.UrlDto;
+import com.japzio.wuss.url.v1.domain.Url;
 import com.japzio.wuss.url.v1.model.UrlRequest;
 import com.japzio.wuss.url.v1.model.UrlRespose;
 
 import com.japzio.wuss.url.v1.service.UrlCacheService;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/url")
+@RequestMapping(path = "/urls")
 public class UrlController {
 
     private UrlCacheService urlCacheService;
@@ -25,11 +24,11 @@ public class UrlController {
     @GetMapping(value = "/{urlId}")
     public UrlRespose getShortenUrlById(@PathVariable("urlId") String urlId) {
 
-        return new UrlRespose(
-                urlId,
-                "https://coreos.com/blog/the-prometheus-operator.html"
-        );
-
+        Url url = urlCacheService.getUrl(urlId);
+        return UrlRespose.builder()
+                .origUrl(url.getOrigUrl())
+                .id(url.getId())
+                .build();
     }
 
     @PostMapping(value = "/shorten", consumes = "application/json")
@@ -37,12 +36,8 @@ public class UrlController {
 
         String id = RandomStringUtils.randomAlphanumeric(8);
 
-        if(StringUtils.isBlank(urlRequest.getUrl())){
-            throw new EmptyFieldException();
-        }
-
         urlCacheService.addUrl(
-                    UrlDto.builder()
+                    Url.builder()
                         .withId(id)
                         .withOrigUrl(urlRequest.getUrl())
                         .withTtl(3600)

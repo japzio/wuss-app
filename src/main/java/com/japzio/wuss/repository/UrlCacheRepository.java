@@ -1,10 +1,10 @@
 package com.japzio.wuss.repository;
 
-import com.japzio.wuss.url.v1.dto.UrlDto;
+import com.japzio.wuss.url.v1.domain.Url;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UrlCacheRepository extends CrudRepository<UrlDto, String> {
+public interface UrlCacheRepository extends CrudRepository<Url, String> {
 
 }
