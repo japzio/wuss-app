@@ -29,3 +29,8 @@ management:
     web:
       exposure:
         include: "*"
+
+logging:
+  level:
+    org.zalando.logbook: TRACE
+    org.springframework.security: DEBUG
